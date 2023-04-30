@@ -83,3 +83,16 @@ target_link_libraries(
     IMGUI_BINDINGS_LIB
     STB_IMAGE_LIB
     )
+
+# Copy resources into build directory
+
+add_custom_command(
+	TARGET
+	Ronnie	
+	POST_BUILD
+	COMMAND
+		${CMAKE_COMMAND} -E copy_directory
+			${CMAKE_SOURCE_DIR}/resources
+			${PROJECT_BINARY_DIR}/resources
+	)
+

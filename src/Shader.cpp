@@ -24,8 +24,8 @@ GLuint Shader::generate(std::string_view code) const
 
     GLuint id = glCreateShader(static_cast<GLuint>(m_type));
     glShaderSource(id, 1, &pShaderCode, nullptr);
-    glCompileShader(m_id);
-    checkCompileErrors(m_id, m_type, ShaderStatus::COMPILE);
+    glCompileShader(id);
+    checkCompileErrors(id, m_type, ShaderStatus::COMPILE);
     
     return id;
 }
@@ -38,12 +38,8 @@ std::string Shader::readShaderFile(std::string_view path) const
         std::cerr << "(Shader::Shader(const std::string&)): unable to open shader file by path=" << path << std::endl;
         return "";
     }
-    else {
-    }
 
-    const auto code{ std::string{ (std::istreambuf_iterator<char>(shaderFile)), std::istreambuf_iterator<char>() } };
-    std::cout << "[debug] (Shader::Shader(const std::string&)): code" << code << std::endl;
-    return code;
+    return std::string{ (std::istreambuf_iterator<char>(shaderFile)), std::istreambuf_iterator<char>() };
 }
 
 std::string ShaderTypeToString(const ShaderType type) {
@@ -71,7 +67,11 @@ bool checkCompileErrors(unsigned int shader, const ShaderType type, const Shader
         if (!success)
         {
             glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-            std::cerr << "ERROR::SHADER_COMPILATION_ERROR of type: " << ShaderTypeToString(type) << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+            std::cerr << "ERROR::SHADER_COMPILATION_ERROR of type: "
+											<< ShaderTypeToString(type)
+											<< "\n"
+											<< infoLog
+											<< std::endl;
             return false;
         }
     }
