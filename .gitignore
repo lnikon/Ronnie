@@ -9,6 +9,7 @@ out
 bin
 .vs
 CMakeUserPresets.json
+*:Zone.Identifier
 # Python items
 .coverage*
 .eggs
