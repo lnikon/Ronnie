@@ -110,15 +110,20 @@ bool ShaderProgramm::Create() {
 GLuint ShaderProgramm::GetId() const { return m_id; }
 
 void ShaderProgramm::SetInt(std::string_view name, int value) const {
-	glUniform1i(glGetUniformLocation(GetId(), name.data()), value);	
+  glUniform1i(glGetUniformLocation(GetId(), name.data()), value);
 }
 
 void ShaderProgramm::SetFloat(std::string_view name, float value) const {
-	glUniform1f(glGetUniformLocation(GetId(), name.data()), value);	
+  glUniform1f(glGetUniformLocation(GetId(), name.data()), value);
 }
 
 void ShaderProgramm::SetBool(std::string_view name, bool value) const {
-	glUniform1i(glGetUniformLocation(GetId(), name.data()), value);	
+  glUniform1i(glGetUniformLocation(GetId(), name.data()), value);
+}
+
+void ShaderProgramm::SetMat4f(std::string_view name, glm::mat4 value) {
+  glUniformMatrix4fv(glGetUniformLocation(GetId(), name.data()), 1, GL_FALSE,
+                     glm::value_ptr(value));
 }
 
 void ShaderProgramm::Use() { glUseProgram(GetId()); }

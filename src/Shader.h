@@ -3,6 +3,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <glm/glm.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <iostream>
 #include <string>
 #include <string_view>
@@ -31,7 +35,6 @@ public:
 	Shader& operator=(const Shader&) = default;
 	Shader& operator=(Shader&&) = default;
 	~Shader();
-
 
 	GLuint GetId() const;
 
@@ -66,6 +69,7 @@ public:
 	void SetInt(std::string_view name, int value) const;
 	void SetFloat(std::string_view name, float value) const;
 	void SetBool(std::string_view name, bool value) const;
+	void SetMat4f(std::string_view name, glm::mat4 value);
 
 private:
 	const GLuint m_id;

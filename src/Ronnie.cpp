@@ -7,6 +7,11 @@
 #include "ImGui/Bindings/imgui_impl_glfw.h"
 #include "ImGui/Bindings/imgui_impl_opengl3.h"
 #include <imgui.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <stdio.h>
 
 #include "Ronnie.h"
@@ -16,8 +21,6 @@
 #include "Texture.h"
 #include "VertexArray.h"
 #include "Window.h"
-
-using namespace std;
 
 int main() {
   auto window{std::make_shared<Window>(600, 800, "Ronnie")};
@@ -91,6 +94,7 @@ int main() {
   shaderProgramm.Create();
   shaderProgramm.Use();
 
+glm::mat4 trans = glm::mat4(1.0f);
   while (!window->ShouldClose()) {
     inputHandler.HandleInput(window);
 
@@ -102,7 +106,11 @@ int main() {
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+	//trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+
     shaderProgramm.Use();
+	shaderProgramm.SetMat4f("transform", trans);
 
     texture1.Bind();
     vao1.Bind();

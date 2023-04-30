@@ -6,10 +6,14 @@ set(CMAKE_CXX_STANDARD 20) # this does nothing for MSVC, use target_compile_opti
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+# Enable static analysis
+#set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+
 # Find required packages
 find_package(imgui REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(glad REQUIRED)
+find_package(glm REQUIRED)
 
 # Bindings for ImGui
 set(
@@ -80,6 +84,7 @@ target_link_libraries(
     imgui::imgui
     glfw
     glad::glad
+	glm::glm
     IMGUI_BINDINGS_LIB
     STB_IMAGE_LIB
     )

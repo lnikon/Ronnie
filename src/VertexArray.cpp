@@ -12,6 +12,7 @@ GLuint CalculateValueSize(const ValueType value) {
 		assert(false);
 		break;
 	}
+	return 0;
 }
 
 /*
@@ -140,8 +141,12 @@ VertexAttribute::Layout VertexAttribute::GetLayout() const
 void VertexAttribute::SetLayout(const Layout& layout)
 {
 	m_layout = layout;
-	glVertexAttribPointer(m_id, layout.GetCount(), static_cast<GLint>(layout.GetType()),
-		static_cast<GLint>(layout.GetNormilized()), m_layout.GetTotalCount(), (void*)(layout.GetOffset()));
+	glVertexAttribPointer(m_id,
+					   layout.GetCount(),
+					   static_cast<GLint>(layout.GetType()),
+					   static_cast<GLint>(layout.GetNormilized()),
+					   m_layout.GetTotalCount(),
+					   reinterpret_cast<void*>(layout.GetOffset()));
 }
 
 /*
