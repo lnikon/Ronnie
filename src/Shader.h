@@ -32,6 +32,7 @@ public:
 	Shader& operator=(Shader&&) = default;
 	~Shader();
 
+
 	GLuint GetId() const;
 
 private:
@@ -56,13 +57,15 @@ public:
 	~ShaderProgramm() = default;
 
 	// TODO: Add some logic to check if shader is allowed
-	void AddShader(Shader shader);
-	
+	Shader& AddShader(Shader shader);
 	bool Create();
+	void Use();
 
 	GLuint GetId() const;
 
-	void Use();
+	void SetInt(std::string_view name, int value) const;
+	void SetFloat(std::string_view name, float value) const;
+	void SetBool(std::string_view name, bool value) const;
 
 private:
 	const GLuint m_id;

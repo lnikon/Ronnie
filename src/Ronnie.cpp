@@ -9,11 +9,9 @@
 #include <imgui.h>
 #include <stdio.h>
 
-#define GLFW_EXPOSE_NATIVE_EGL
-
+#include "Ronnie.h"
 #include "ArrayBuffer.h"
 #include "InputHandler.h"
-#include "Ronnie.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "VertexArray.h"
@@ -84,10 +82,12 @@ int main() {
   vao1.EnableAttribute();
 
   ShaderProgramm shaderProgramm;
-  shaderProgramm.AddShader(
-      std::move(Shader{"./resources/shaders/vertex_shader.glsl", ShaderType::VERTEX}));
-  shaderProgramm.AddShader(std::move(
-      Shader{"./resources/shaders/fragment_shader.glsl", ShaderType::FRAGMENT}));
+  auto vertexShader { shaderProgramm.AddShader(
+      std::move(Shader{"./resources/shaders/vertex_shader.glsl", ShaderType::VERTEX})) };
+
+  auto fragmentShader { shaderProgramm.AddShader(std::move(
+      Shader{"./resources/shaders/fragment_shader.glsl", ShaderType::FRAGMENT})) };
+
   shaderProgramm.Create();
   shaderProgramm.Use();
 
