@@ -17,6 +17,10 @@ Window::Window(const std::size_t width, const std::size_t height, const std::str
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+#if defined(__APPLE__)
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);           // Required on Mac
+#endif
+
 	m_pWindow.reset(glfwCreateWindow(GetWidth(), GetHeight(), GetTitle().data(), NULL, NULL));
 	if (m_pWindow == nullptr) {
 		std::cerr << "Failed to create a GLFW windows" << std::endl;
@@ -64,12 +68,12 @@ void Window::Sync() const
 	glfwPollEvents();
 }
 
-std::size_t Window::GetWidth() const
+float Window::GetWidth() const
 {
 	return m_width;
 }
 
-std::size_t Window::GetHeight() const
+float Window::GetHeight() const
 {
 	return m_height;
 }

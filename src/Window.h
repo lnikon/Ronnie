@@ -1,5 +1,7 @@
 #pragma once
 
+#include <GLFW/glfw3.h>
+
 #include <cstddef>
 #include <string>
 #include <memory>
@@ -28,14 +30,14 @@ public:
 
 	void Sync() const;
 
-	std::size_t GetWidth() const;
-	std::size_t GetHeight() const;
+	float GetWidth() const;
+	float GetHeight() const;
 	std::string GetTitle() const;
 	GLFWwindow* GetGLFWWindow() const;
 
 private:
-	const std::size_t m_width;
-	const std::size_t m_height;
+	const float m_width;
+	const float m_height;
 	const std::string m_title;
 
 	std::unique_ptr<GLFWwindow, GLFWwidowUniqueDeleter> m_pWindow;
