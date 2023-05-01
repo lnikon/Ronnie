@@ -30,6 +30,7 @@ jobs:
     - name: Install packages via Conan2
       run: |
         conan profile detect
+        echo "[conf]" >> ~/.conan2/profiles/default
         echo "tools.system.package_manager:mode=install" >> ~/.conan2/profiles/default
         conan install . -of=build --build=missing
     - name: Configure CMake
