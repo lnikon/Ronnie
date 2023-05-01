@@ -30,6 +30,7 @@ jobs:
     - name: Install packages via Conan2
       run: |
         conan profile detect
+        echo "tools.system.package_manager:mode=install" >> ~/.conan2/profiles/default
         conan install . -of=build --build=missing
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
