@@ -3,6 +3,7 @@
 #include <memory>
 
 class Window;
+class ICommand;
 
 class InputHandler {
 public:
@@ -13,7 +14,7 @@ public:
 	InputHandler& operator=(InputHandler&&) = delete;
 	~InputHandler();
 
-	void HandleInput(std::shared_ptr<Window> pWindow) const;
+	std::shared_ptr<ICommand> HandleInput(std::shared_ptr<Window> pWindow) const;
 
 	// TODO: Another implementation for Camera
 	//void HandleInput(std::shared_ptr<Camera> pWindow) const;

@@ -65,6 +65,20 @@ set(
     "${CMAKE_SOURCE_DIR}/src/Window.h"
     "${CMAKE_SOURCE_DIR}/src/Ronnie.h"
     "${CMAKE_SOURCE_DIR}/src/Ronnie.cpp"
+		"${CMAKE_SOURCE_DIR}/src/Camera/CameraDirection.h"
+		"${CMAKE_SOURCE_DIR}/src/Camera/CameraDirection.cpp"
+		"${CMAKE_SOURCE_DIR}/src/Camera/FloatingCamera.h"
+		"${CMAKE_SOURCE_DIR}/src/Camera/FloatingCamera.cpp"
+		"${CMAKE_SOURCE_DIR}/src/Camera/ICamera.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/CommandTypes.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/CommandTypes.cpp"
+		"${CMAKE_SOURCE_DIR}/src/Commands/ICommand.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/IDispatcher.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/KeyPressCommand.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/KeyPressCommand.cpp"
+		"${CMAKE_SOURCE_DIR}/src/Commands/KeyType.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/MoveCameraCommand.h"
+		"${CMAKE_SOURCE_DIR}/src/Commands/MoveCameraCommand.cpp"
     )
 
 add_executable(
