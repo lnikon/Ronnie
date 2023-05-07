@@ -12,7 +12,7 @@
 
 class ShaderProgramm;
 
-class FloatingCamera : public ICamera, public IDispatcher, public std::enable_shared_from_this<FloatingCamera> {
+class FloatingCamera : public ICamera, public IDispatcher {
 public:
   FloatingCamera(std::shared_ptr<Window> pWindow,
                  std::shared_ptr<ShaderProgramm> pShaderProgramm);
@@ -39,7 +39,8 @@ private:
 
   glm::mat4 m_projection{glm::perspective(
       glm::radians(45.0f),
-      static_cast<float>(m_pWindow->GetWidth() / m_pWindow->GetHeight()), 0.1f, 100.0f)};
+      static_cast<float>(m_pWindow->GetWidth() / m_pWindow->GetHeight()), 0.1f,
+      100.0f)};
   glm::mat4 m_model = glm::mat4(1.0f);
   glm::mat4 m_view{
       glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp)};

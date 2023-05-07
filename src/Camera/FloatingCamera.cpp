@@ -34,9 +34,9 @@ FloatingCamera::FloatingCamera(std::shared_ptr<Window> pWindow,
 }
 
 void FloatingCamera::Update(std::shared_ptr<ICommand> pCommand) {
-  //float currentFrame = glfwGetTime();
-  //m_deltaTime = currentFrame - m_lastFrame;
-  //m_lastFrame = currentFrame;
+  // float currentFrame = glfwGetTime();
+  // m_deltaTime = currentFrame - m_lastFrame;
+  // m_lastFrame = currentFrame;
 
   if (!pCommand) {
     std::cerr << "(FloatingCamera::Update): null pcommand" << std::endl;
